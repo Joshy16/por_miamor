@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I love you, Sabrina</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+@property --b1{syntax:'<color>';inherits:true;initial-value:#0b0716}
+@property --b2{syntax:'<color>';inherits:true;initial-value:#241240}
+@property --b3{syntax:'<color>';inherits:true;initial-value:#4a1747}
+:root{box-sizing:border-box;--b1:#0b0716;--b2:#241240;--b3:#4a1747;--ac:#ffd9a0;--hot:#ff6b9d;
+ transition:--b1 1.2s,--b2 1.2s,--b3 1.2s;
+ padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden;color:#fff;font-family:Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:radial-gradient(60% 50% at 20% 15%,var(--b3),transparent 70%),radial-gradient(70% 60% at 85% 90%,var(--b2),transparent 70%),var(--b1)}
+canvas{position:fixed;inset:0;width:100%;height:100%;z-index:1}
+.glow{position:fixed;z-index:0;width:60vmax;height:60vmax;left:50%;top:45%;transform:translate(-50%,-50%);background:radial-gradient(circle,color-mix(in srgb,var(--hot) 28%,transparent),transparent 62%);animation:breathe 5s ease-in-out infinite;pointer-events:none}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.15);opacity:.7}}
+main{position:fixed;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px 16px 150px;pointer-events:none}
+.eyebrow{letter-spacing:.38em;text-transform:uppercase;font-size:clamp(.65rem,2.2vw,.8rem);color:var(--ac);opacity:.85;margin-bottom:10px}
+h1{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(2.2rem,8vw,4.6rem);margin:0;letter-spacing:.01em;opacity:0;animation:rise 1.4s .2s forwards}
+h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(3.6rem,17vw,10rem);line-height:.95;margin:0;letter-spacing:.02em;background:linear-gradient(100deg,var(--ac) 20%,#fff 45%,var(--ac) 70%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1.6s .5s both,shine 6s 2s linear infinite;filter:drop-shadow(0 8px 30px rgba(0,0,0,.35))}
+@keyframes rise{from{opacity:0;transform:translateY(24px);filter:blur(8px)}to{opacity:1;transform:none}}
+@keyframes shine{to{background-position:-220% 0}}
+.heartbtn{pointer-events:auto;cursor:pointer;margin:18px 0 6px;width:76px;height:76px;border:0;background:none;padding:0;animation:beat 1.5s ease-in-out infinite;filter:drop-shadow(0 0 18px var(--hot));transition:filter .3s}
+.heartbtn:active{transform:scale(.88)}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.1)}}
+.count{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);opacity:.8;min-height:1.2em}
+.msg{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(1.15rem,4vw,1.7rem);margin-top:12px;min-height:1.6em;transition:opacity .6s,transform .6s}
+.msg.out{opacity:0;transform:translateY(8px)}
+.dock{position:fixed;z-index:10;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(94vw,720px);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:center;padding:12px 16px;border-radius:24px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.seg{display:flex;background:rgba(0,0,0,.25);border-radius:14px;padding:3px}
+button.opt,button.pill{font:500 .8rem Inter,system-ui,sans-serif;color:#fff;border:0;cursor:pointer;border-radius:11px;padding:8px 13px;background:transparent;transition:background .25s,color .25s,transform .15s}
+button.opt.on{background:var(--ac);color:#2a1030}
+button.pill{background:linear-gradient(135deg,var(--hot),#ff9a6b);box-shadow:0 6px 20px color-mix(in srgb,var(--hot) 45%,transparent);border-radius:14px;padding:10px 18px}
+button.tog{font:500 .8rem Inter,system-ui,sans-serif;color:#fff;background:rgba(0,0,0,.25);border:0;border-radius:14px;padding:9px 13px;cursor:pointer}
+button.tog.on{background:var(--ac);color:#2a1030}
+button:active{transform:scale(.94)}
+.sl{display:flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+input[type=range]{-webkit-appearance:none;appearance:none;width:92px;height:4px;border-radius:4px;background:rgba(255,255,255,.28);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:var(--ac);cursor:pointer}
+@media (prefers-reduced-motion:reduce){.heartbtn,.glow,h2{animation:none}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<canvas id="c"></canvas>
+<main>
+  <div class="eyebrow">A little something for you</div>
+  <h1>I love you,</h1>
+  <h2>Sabrina</h2>
+  <button class="heartbtn" id="hb" aria-label="Send love">
+    <svg viewBox="0 0 100 90" width="100%" height="100%"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb3c9"/><stop offset="1" stop-color="#ff3d7f"/></linearGradient></defs><path d="M50 84C14 56 4 38 4 25 4 12 14 4 26 4c10 0 18 6 24 15C56 10 64 4 74 4c12 0 22 8 22 21 0 13-10 31-46 59z" fill="url(#g)"/></svg>
+  </button>
+  <div class="count" id="count">Tap the heart</div>
+  <div class="msg" id="msg"></div>
+</main>
+<div class="dock">
+  <button class="pill" id="burst">Send love</button>
+  <div class="seg" id="moods">
+    <button class="opt on" data-m="midnight">Midnight</button>
+    <button class="opt" data-m="rose">Rose</button>
+    <button class="opt" data-m="aurora">Aurora</button>
+  </div>
+  <label class="sl">Density <input type="range" id="dens" min="5" max="70" value="30"></label>
+  <label class="sl">Speed <input type="range" id="spd" min="1" max="5" value="2" step=".5"></label>
+  <button class="tog on" id="spark">Sparkles on</button>
+</div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var MOODS={
+ midnight:{b1:'#0b0716',b2:'#241240',b3:'#4a1747',ac:'#ffd9a0',hot:'#ff6b9d',pal:['#ff6b9d','#ffb3c9','#ffd9a0','#c77dff']},
+ rose:{b1:'#2a0d1c',b2:'#6b1f3f',b3:'#c2577a',ac:'#ffe3d6',hot:'#ff8fab',pal:['#ffd6e0','#ff8fab','#fff0f3','#ffc8a2']},
+ aurora:{b1:'#04141f',b2:'#0b3a4a',b3:'#4a2a7a',ac:'#b8fff0',hot:'#a78bfa',pal:['#7cf5d4','#a78bfa','#f0abfc','#ffffff']}
+};
+var mood=MOODS.midnight,hearts=[],sparks=[],stars=[],speed=1,target=30,sparkOn=true,sent=0;
+var cv=$('c'),ctx=cv.getContext('2d'),W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
+function size(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+ stars=[];for(var i=0;i<70;i++)stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,p:Math.random()*6})}
+size();window.addEventListener('resize',size);
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function spawn(x,y,burst){
+ hearts.push({x:x==null?Math.random()*W:x,y:y==null?H+30:y,s:burst?8+Math.random()*16:8+Math.random()*20,c:pick(mood.pal),
+ a:burst?1:.35+Math.random()*.5,vx:burst?(Math.random()-.5)*9:(Math.random()-.5)*.4,vy:burst?-(2+Math.random()*7):-(.4+Math.random()*.8),w:Math.random()*6,burst:burst,r:(Math.random()-.5)*.5})}
+function love(x,y,n){for(var i=0;i<n;i++)spawn(x,y,true)}
+function drawHeart(h){ctx.save();ctx.translate(h.x,h.y);ctx.rotate(h.r*Math.sin(h.w));var s=h.s/10;ctx.scale(s,s);
+ ctx.globalAlpha=Math.max(0,Math.min(1,h.a));ctx.fillStyle=h.c;ctx.shadowColor=h.c;ctx.shadowBlur=14;
+ ctx.beginPath();ctx.moveTo(0,4);ctx.bezierCurveTo(-11,-3,-7,-11,0,-6);ctx.bezierCurveTo(7,-11,11,-3,0,4);ctx.fill();ctx.restore()}
+var t=0;
+function loop(){t+=.016;ctx.clearRect(0,0,W,H);
+ for(var i=0;i<stars.length;i++){var s=stars[i];ctx.globalAlpha=.25+.35*Math.sin(t*1.5+s.p);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.3);ctx.fill()}
+ var amb=0;for(i=0;i<hearts.length;i++)if(!hearts[i].burst)amb++;
+ if(amb<target&&Math.random()<.25)spawn();
+ for(i=hearts.length-1;i>=0;i--){var h=hearts[i];h.w+=.03;
+  if(h.burst){h.vy+=.12;h.vx*=.985;h.a-=.012;h.x+=h.vx;h.y+=h.vy}else{h.x+=h.vx+Math.sin(h.w)*.5;h.y+=h.vy*speed}
+  drawHeart(h);if(h.y<-50||h.a<=0||h.y>H+80)hearts.splice(i,1)}
+ ctx.shadowBlur=0;
+ for(i=sparks.length-1;i>=0;i--){var p=sparks[i];p.x+=p.vx;p.y+=p.vy;p.l-=.025;ctx.globalAlpha=Math.max(p.l,0);ctx.fillStyle=mood.ac;ctx.beginPath();ctx.arc(p.x,p.y,p.r*p.l+.5,0,6.3);ctx.fill();if(p.l<=0)sparks.splice(i,1)}
+ ctx.globalAlpha=1;requestAnimationFrame(loop)}
+loop();
+var lines=["You make every day brighter.","Thank you for being you.","My favorite person in the world.","Every moment with you is a gift.","With you, I'm home."],li=0,msg=$('msg');
+msg.textContent=lines[0];
+setInterval(function(){msg.classList.add('out');setTimeout(function(){li=(li+1)%lines.length;msg.textContent=lines[li];msg.classList.remove('out')},600)},3600);
+var notes=["Tap the heart","Love sent: ","Love sent: "];
+function bump(){sent++;$('count').textContent='Love sent: '+sent}
+function showerBurst(){for(var i=0;i<9;i++)(function(i){setTimeout(function(){love(Math.random()*W,H*.45+Math.random()*H*.35,16)},i*110)})(i);sent+=9;$('count').textContent='Love sent: '+sent}
+$('hb').addEventListener('click',function(e){var r=this.getBoundingClientRect();love(r.left+r.width/2,r.top+r.height/2,26);bump()});
+$('burst').addEventListener('click',showerBurst);
+document.addEventListener('keydown',function(e){if(e.code==='Space'&&e.target.tagName!=='INPUT'){e.preventDefault();showerBurst()}});
+window.addEventListener('pointerdown',function(e){if(e.target.closest('.dock')||e.target.closest('.heartbtn'))return;love(e.clientX,e.clientY,14);bump()});
+window.addEventListener('pointermove',function(e){if(!sparkOn||e.target.closest('.dock'))return;for(var i=0;i<2;i++)sparks.push({x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*2.2,vy:(Math.random()-.5)*2.2-.4,r:2+Math.random()*3,l:1})});
+$('dens').addEventListener('input',function(){target=+this.value});
+$('spd').addEventListener('input',function(){speed=+this.value/2});
+var sp=$('spark');sp.addEventListener('click',function(){sparkOn=!sparkOn;sp.classList.toggle('on',sparkOn);sp.textContent=sparkOn?'Sparkles on':'Sparkles off'});
+var opts=document.querySelectorAll('#moods .opt');
+Array.prototype.forEach.call(opts,function(b){b.addEventListener('click',function(){
+ mood=MOODS[b.getAttribute('data-m')];var r=document.documentElement.style;
+ r.setProperty('--b1',mood.b1);r.setProperty('--b2',mood.b2);r.setProperty('--b3',mood.b3);r.setProperty('--ac',mood.ac);r.setProperty('--hot',mood.hot);
+ Array.prototype.forEach.call(opts,function(x){x.classList.toggle('on',x===b)});
+ for(var i=0;i<hearts.length;i++)hearts[i].c=pick(mood.pal);
+ var rc=$('hb').getBoundingClientRect();love(rc.left+rc.width/2,rc.top+rc.height/2,18)})});
+})();
+</script>
+</body>
+</html>
